@@ -30,12 +30,11 @@ public class emergContact {
     }
 
     public void sendEmergMessage(Context context, String locationLink) {
-        String Message1 = "This is an automated message. This person set your contact as an emergency contact. Please look out for them, dear " + name;
-        String Message2 = "The location is: "+locationLink;
+        String Message1 = "This is an automated message. This person set your contact as an emergency contact. "+" The location is: "+locationLink;;
+
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, Message1, null, null);
-            smsManager.sendTextMessage(phoneNumber, null, Message2, null, null);
 
             Toast.makeText(context, "Mesaj trimis la " + name, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
