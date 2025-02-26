@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     boolean autoisON=false;
 
     private void customColors(View layout) {
-        int currentColor = Color.WHITE; // Culoare implicită
+        int currentColor = Color.WHITE;
 
         if (layout.getBackground() instanceof ColorDrawable) {
             currentColor = ((ColorDrawable) layout.getBackground()).getColor();
