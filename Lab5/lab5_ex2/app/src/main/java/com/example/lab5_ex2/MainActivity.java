@@ -3,6 +3,7 @@ package com.example.lab5_ex2;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,16 +21,14 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         Button startReadingButton = findViewById(R.id.startReadingButton);
+        ImageView img=findViewById(R.id.imageView2);
         startReadingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startReadingButton.setVisibility(View.GONE);
+                img.setVisibility(View.GONE);
                 Fragment fragment = Chapter1.newInstance();
-
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-
                 transaction.replace(R.id.fragment_layout, fragment);
                 transaction.commit();
             }

@@ -7,22 +7,33 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/startReadingButton"
-        android:layout_width="167dp"
-        android:layout_height="98dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="162dp"
-        android:text="Start Reading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="304dp"
+        android:layout_height="316dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img" />
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/startReadingButton"
+            android:layout_width="167dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="450dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginRight="124dp"
+            android:text="Start Reading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
