@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">lab5_ex2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text1_ch1">   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sagittis ex sapien, vel venenatis elit sodales in. Pellentesque aliquet mauris nec felis pharetra pretium. Praesent finibus erat urna, eget luctus lorem venenatis tempus. Proin accumsan congue porta. In laoreet, lectus sed facilisis congue, arcu nunc placerat leo, quis ultrices enim enim eu diam. Duis mollis aliquam mollis. Cras dapibus eros sit amet nunc hendrerit aliquam</string>
+</resources>

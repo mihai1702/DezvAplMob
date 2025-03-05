@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 //            new emergContact("Razvan", "0748562056"),
 //            new emergContact("Bogdan", "0755285622")
 //    ));
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
