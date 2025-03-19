@@ -132,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                    if (location != null) {
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-                        String locationLink = "https://www.google.com/maps?q=" + latitude + "," + longitude;
-                        System.out.println(locationLink);
-                        contact.sendEmergMessage(MainActivity.this, locationLink);
-                    }
+                if (location != null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    String locationLink = "https://www.google.com/maps?q=" + latitude + "," + longitude;
+                    System.out.println(locationLink);
+                    contact.sendEmergMessage(MainActivity.this, locationLink);
+                }
             }
         });
     }
