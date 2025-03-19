@@ -12,12 +12,42 @@
         android:layout_width="220dp"
         android:layout_height="91dp"
         android:layout_marginStart="95dp"
-        android:layout_marginTop="320dp"
         android:layout_marginEnd="96dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="83dp"
         android:text="Press if EMERGENCY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/EmergencyTextView"
+        android:layout_width="272dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="68dp"
+        android:text="The emergency button is pressed. If you don't cancel it, it will call an emergency contact"
+        android:textAlignment="center"
+        android:textColor="#E91E63"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/stopEmergButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/stopEmergButton"
+        android:layout_width="120dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginBottom="92dp"
+        android:text="Stop Emergency"
+        app:layout_constraintBottom_toTopOf="@+id/EmergButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmergencyTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

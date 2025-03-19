@@ -10,9 +10,11 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 import android.location.Location;
@@ -34,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int SMS_PERMISSION_CODE = 1;
     private static final int LOCATION_PERMISSION_CODE = 2;
     private FusedLocationProviderClient fusedLocationClient;
+    private static final int REQUEST_CALL_PERMISSION = 1;
+    private static final String EMERGENCY_NUMBER = "0787596450"; // Înlocuiește cu numărul tău
+    private Handler handler = new Handler();
+    private Runnable callRunnable;
+    private Button stopEmergButton;
+    private TextView EmergencyTextView;
+
 //    List<emergContact>emergContacts=new ArrayList<>(Arrays.asList(
 //            new emergContact("Oana", "0748231348"),
 //            new emergContact("Mihai", "0787596450"),
@@ -46,10 +55,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        permissions();
 
         List<emergContact>emergContacts=getFavoriteContacts(this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        Button EmergContact = findViewById(R.id.EmergButton);
+
+        stopEmergButton=findViewById(R.id.stopEmergButton);
+        stopEmergButton.setVisibility(View.GONE);
+
+        EmergencyTextView=findViewById(R.id.EmergencyTextView);
+        EmergencyTextView.setVisibility(View.GONE);
+
+        stopEmergButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopEmergencyCall();
+            }
+        });
+
+        EmergContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (emergContact contact : emergContacts) {
+                    sendLocationAndMessage(contact);
+
+                }
+                startEmergencyCountDown();
+            }
+        });
+    }
+    public void startEmergencyCountDown(){
+        EmergencyTextView.setVisibility(View.VISIBLE);
+        stopEmergButton.setVisibility(View.VISIBLE);
+        callRunnable=this::makeEmergencyCall;
+        handler.postDelayed(callRunnable, 10000);
+    }
+    public void stopEmergencyCall(){
+        handler.removeCallbacks(callRunnable);
+        Toast.makeText(this, "Apelul de urgență a fost anulat!", Toast.LENGTH_SHORT).show();
+
+        stopEmergButton.setVisibility(View.GONE);
+        EmergencyTextView.setVisibility(View.GONE);
+
+    }
+    public void makeEmergencyCall(){
+        stopEmergButton.setVisibility(View.GONE);
+        EmergencyTextView.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + EMERGENCY_NUMBER));
+        startActivity(intent);
+
+    }
+    public void permissions(){
         ///permisiuni SMS
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_CODE);
@@ -62,20 +121,11 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 1);
         }
-
-        Button EmergContact = findViewById(R.id.EmergButton);
-
-        EmergContact.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                for (emergContact contact : emergContacts) {
-                    sendLocationAndMessage(contact);
-                }
-            }
-        });
+        ///permisiuni apel
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+        }
     }
-
     public List<emergContact> getFavoriteContacts(Context context) {
         List<emergContact> Contacts = new ArrayList<>();
 
